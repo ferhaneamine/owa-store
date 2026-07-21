@@ -2,21 +2,21 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Collection } from "@/types";
+import { Category } from "@/types";
 import ImageUploader, { UploadedImage } from "@/components/admin/ImageUploader";
 
-export default function CollectionForm({ collection }: { collection?: Collection }) {
+export default function CategoryForm({ category }: { category?: Category })  {
   const router = useRouter();
-  const isEdit = !!collection;
+  const isEdit = !!category;
 
-  const [name, setName] = useState(collection?.name ?? "");
-  const [slug, setSlug] = useState(collection?.slug ?? "");
-  const [tagline, setTagline] = useState(collection?.tagline ?? "");
-  const [description, setDescription] = useState(collection?.description ?? "");
-  const [order, setOrder] = useState(String(collection?.order ?? 0));
+  const [name, setName] = useState(category?.name ?? "");
+  const [slug, setSlug] = useState(category?.slug ?? "");
+  const [tagline, setTagline] = useState(category?.tagline ?? "");
+  const [description, setDescription] = useState(category?.description ?? "");
+  const [order, setOrder] = useState(String(category?.order ?? 0));
   const [coverImage, setCoverImage] = useState<UploadedImage[]>(
-    collection?.coverImage?.url
-      ? [{ url: collection.coverImage.url, publicId: collection.coverImage.publicId }]
+    category?.coverImage?.url
+      ? [{ url: category.coverImage.url, publicId: category.coverImage.publicId }]
       : []
   );
   const [saving, setSaving] = useState(false);
@@ -46,28 +46,31 @@ export default function CollectionForm({ collection }: { collection?: Collection
     };
 
     try {
-      const res = await fetch(
-        isEdit ? `/api/collections/${collection!.slug}` : "/api/collections",
-        {
-          method: isEdit ? "PATCH" : "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "Erreur lors de l'enregistrement");
-      }
-      router.push("/admin/collections");
-      router.refresh();
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "MongoDB non configuré — voir README.md"
-      );
-    } finally {
-      setSaving(false);
+  const res = await fetch(
+    isEdit ? `/api/categories/${category!.slug}` : "/api/categories",
+    {
+      method: isEdit ? "PATCH" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     }
-  };
+  );
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error ?? "Erreur lors de l'enregistrement");
+  }
+
+  router.push("/admin/categories");
+  router.refresh();
+
+} catch (err) {
+  setError(
+    err instanceof Error ? err.message : "MongoDB non configuré — voir README.md"
+  );
+} finally {
+    setSaving(false);
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 flex max-w-xl flex-col gap-6">

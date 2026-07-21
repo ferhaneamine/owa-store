@@ -31,7 +31,7 @@ export interface Product {
   compareAtPrice?: number;
   description: string;
   category: "hoodie" | "tshirt" | "pants" | "accessory";
-  collectionSlug: string;
+  categorySlug: string;
   colors: string[];
   sizes: ProductVariantStock[];
   images: ProductImage[];
@@ -42,7 +42,7 @@ export interface Product {
   updatedAt: string;
 }
 
-export interface Collection {
+export interface Category {
   _id: string;
   slug: string;
   name: string;

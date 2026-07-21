@@ -12,7 +12,7 @@ const LINKS = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/orders", label: "Commandes", icon: ShoppingBag },
   { href: "/admin/products", label: "Produits", icon: Package },
-  { href: "/admin/collections", label: "Catégories", icon: Layers },
+  { href: "/admin/categories", label: "Catégories", icon: Layers },
   { href: "/admin/customers", label: "Clients", icon: Users },
   { href: "/admin/inventory", label: "Stock", icon: Boxes },
   { href: "/admin/settings", label: "Paramètres", icon: Settings },

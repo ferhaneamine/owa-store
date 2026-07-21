@@ -7,14 +7,27 @@ export async function GET(req: NextRequest) {
   await connectDB();
 
   const params = req.nextUrl.searchParams;
+
   const category = params.get("category");
+  const categorySlug = params.get("categorySlug");
   const q = params.get("q");
   const sort = params.get("sort") ?? "newest";
 
   const filter: Record<string, unknown> = {};
 
-  if (category) filter.category = category;
-  if (q) filter.$text = { $search: q };
+  // Product type (hoodie, tshirt, pants...)
+  if (category) {
+    filter.category = category;
+  }
+
+  // Admin category
+  if (categorySlug) {
+    filter.categorySlug = categorySlug;
+  }
+
+  if (q) {
+    filter.$text = { $search: q };
+  }
 
   const sortMap: Record<string, Record<string, 1 | -1>> = {
     newest: { createdAt: -1 },
@@ -28,6 +41,7 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({ products });
 }
+
 
 export async function POST(req: NextRequest) {
   if (!(await isAdminAuthenticated())) {
@@ -48,7 +62,9 @@ export async function POST(req: NextRequest) {
       { product },
       { status: 201 }
     );
+
   } catch (err: unknown) {
+
     if (
       err &&
       typeof err === "object" &&

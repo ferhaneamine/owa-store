@@ -1,17 +1,17 @@
-import { Product, Collection } from "@/types";
+import { Product, Category } from "@/types";
 
-export const collections: Collection[] = [
+export const categories: Category[] = [
   {
-    _id: "c1",
-    slug: "front-de-mer",
-    name: "Front de Mer",
+    _id: "cat1",
+    slug: "hoodies",
+    name: "Hoodies",
     tagline: "Coupes amples, finitions premium",
     description:
       "Hoodies et t-shirts en coton épais, coupe oversize, imprimés graphiques en édition limitée.",
     coverImage: {
       url: "",
       publicId: "",
-      alt: "Front de Mer",
+      alt: "Hoodies",
     },
     order: 1,
   },
@@ -22,7 +22,11 @@ export const collections: Collection[] = [
     tagline: "Pièces techniques, tons minéraux",
     description:
       "Cargos et vestes techniques pensés pour un usage quotidien, tissus déperlants et coupes structurées.",
-    coverImage: { url: "", publicId: "", alt: "Corniche" },
+    coverImage: {
+      url: "",
+      publicId: "",
+      alt: "Corniche",
+    },
     order: 2,
   },
   {
@@ -32,7 +36,11 @@ export const collections: Collection[] = [
     tagline: "Basiques essentiels",
     description:
       "Hoodies et t-shirts unis, coupe droite, matières douces — les indispensables du vestiaire.",
-    coverImage: { url: "", publicId: "", alt: "Médina" },
+    coverImage: {
+      url: "",
+      publicId: "",
+      alt: "Médina",
+    },
     order: 3,
   },
   {
@@ -42,7 +50,11 @@ export const collections: Collection[] = [
     tagline: "Collection capsule",
     description:
       "Une capsule graphique en édition limitée, floquée et brodée, disponible en quantités restreintes.",
-    coverImage: { url: "", publicId: "", alt: "31" },
+    coverImage: {
+      url: "",
+      publicId: "",
+      alt: "31",
+    },
     order: 4,
   },
 ];
@@ -56,7 +68,7 @@ export const products: Product[] = [
     description:
       "Le hoodie fondateur de la marque. Coton épais 400gsm, coupe oversize, logo brodé au dos.",
     category: "hoodie",
-    collectionSlug: "front-de-mer",
+    categorySlug: "hoodies",
     colors: ["Noir"],
     sizes: [
       { size: "S", stock: 8 },
@@ -65,7 +77,13 @@ export const products: Product[] = [
       { size: "XL", stock: 6 },
       { size: "XXL", stock: 3 },
     ],
-    images: [{ url: "", publicId: "", alt: "OWA Signature Hoodie" }],
+    images: [
+      {
+        url: "",
+        publicId: "",
+        alt: "OWA Signature Hoodie",
+      },
+    ],
     featured: true,
     isNewArrival: true,
     tags: ["hoodie", "signature", "bestseller"],
@@ -80,7 +98,7 @@ export const products: Product[] = [
     description:
       "T-shirt en coton peigné avec impression graphique. Coupe régulière, édition limitée.",
     category: "tshirt",
-    collectionSlug: "front-de-mer",
+    categorySlug: "hoodies",
     colors: ["Noir"],
     sizes: [
       { size: "S", stock: 10 },
@@ -88,7 +106,13 @@ export const products: Product[] = [
       { size: "L", stock: 15 },
       { size: "XL", stock: 7 },
     ],
-    images: [{ url: "", publicId: "", alt: "Front de Mer Tee" }],
+    images: [
+      {
+        url: "",
+        publicId: "",
+        alt: "Front de Mer Tee",
+      },
+    ],
     featured: true,
     isNewArrival: true,
     tags: ["tshirt", "graphic"],
@@ -103,7 +127,7 @@ export const products: Product[] = [
     description:
       "Hoodie crème avec typographie O.W.A brodée sur la poitrine. Coupe droite, poche kangourou renforcée.",
     category: "hoodie",
-    collectionSlug: "medina",
+    categorySlug: "medina",
     colors: ["Écru"],
     sizes: [
       { size: "S", stock: 5 },
@@ -111,7 +135,13 @@ export const products: Product[] = [
       { size: "L", stock: 9 },
       { size: "XL", stock: 4 },
     ],
-    images: [{ url: "", publicId: "", alt: "Oranais Hoodie" }],
+    images: [
+      {
+        url: "",
+        publicId: "",
+        alt: "Oranais Hoodie",
+      },
+    ],
     featured: true,
     isNewArrival: false,
     tags: ["hoodie"],
@@ -126,7 +156,7 @@ export const products: Product[] = [
     description:
       "Le numéro 31 en grand floqué au dos, façon maillot sportif. Coton lourd, coupe droite.",
     category: "tshirt",
-    collectionSlug: "31",
+    categorySlug: "31",
     colors: ["Noir"],
     sizes: [
       { size: "S", stock: 12 },
@@ -134,7 +164,13 @@ export const products: Product[] = [
       { size: "L", stock: 16 },
       { size: "XL", stock: 8 },
     ],
-    images: [{ url: "", publicId: "", alt: "Code 31 Tee" }],
+    images: [
+      {
+        url: "",
+        publicId: "",
+        alt: "Code 31 Tee",
+      },
+    ],
     featured: true,
     isNewArrival: true,
     tags: ["tshirt", "football"],
@@ -149,7 +185,7 @@ export const products: Product[] = [
     description:
       "Pantalon cargo technique, poches multiples, cordon de serrage à la cheville. Tissu déperlant, coupe droite.",
     category: "pants",
-    collectionSlug: "corniche",
+    categorySlug: "corniche",
     colors: ["Noir", "Kaki"],
     sizes: [
       { size: "S", stock: 6 },
@@ -157,7 +193,13 @@ export const products: Product[] = [
       { size: "L", stock: 9 },
       { size: "XL", stock: 5 },
     ],
-    images: [{ url: "", publicId: "", alt: "Tech Cargo Pant" }],
+    images: [
+      {
+        url: "",
+        publicId: "",
+        alt: "Tech Cargo Pant",
+      },
+    ],
     featured: false,
     isNewArrival: false,
     tags: ["pants", "cargo"],
@@ -172,10 +214,21 @@ export const products: Product[] = [
     description:
       "Casquette 6 panneaux avec logo O.W.A brodé. Ajustable, dégradé cousu bicolore.",
     category: "accessory",
-    collectionSlug: "front-de-mer",
+    categorySlug: "hoodies",
     colors: ["Noir"],
-    sizes: [{ size: "Unique", stock: 22 }],
-    images: [{ url: "", publicId: "", alt: "Sunset Collection Cap" }],
+    sizes: [
+      {
+        size: "Unique",
+        stock: 22,
+      },
+    ],
+    images: [
+      {
+        url: "",
+        publicId: "",
+        alt: "Sunset Collection Cap",
+      },
+    ],
     featured: false,
     isNewArrival: true,
     tags: ["accessory", "cap"],
@@ -188,8 +241,8 @@ export function getProductBySlug(slug: string) {
   return products.find((p) => p.slug === slug);
 }
 
-export function getCollectionBySlug(slug: string) {
-  return collections.find((c) => c.slug === slug);
+export function getCategoryBySlug(slug: string) {
+  return categories.find((c) => c.slug === slug);
 }
 
 export function getRelatedProducts(product: Product, limit = 4) {
@@ -197,7 +250,7 @@ export function getRelatedProducts(product: Product, limit = 4) {
     .filter(
       (p) =>
         p._id !== product._id &&
-        (p.collectionSlug === product.collectionSlug ||
+        (p.categorySlug === product.categorySlug ||
           p.category === product.category)
     )
     .slice(0, limit);

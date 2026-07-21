@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Anton, Inter, IBM_Plex_Mono } from "next/font/google";
-import "./globals.css";
 
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import CustomCursor from "@/components/ui/CustomCursor";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import LayoutWrapper from "@/components/LayoutWrapper";
-
+import LayoutWrapper from "@/components/layoutWrapper";
+import "./globals.css";
 const anton = Anton({
   weight: "400",
   subsets: ["latin"],

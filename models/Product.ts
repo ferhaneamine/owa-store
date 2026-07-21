@@ -19,34 +19,103 @@ const VariantStockSchema = new Schema(
 
 const ProductSchema = new Schema(
   {
-    slug: { type: String, required: true, unique: true, index: true },
-    name: { type: String, required: true },
-    price: { type: Number, required: true, min: 0 },
-    compareAtPrice: { type: Number },
-
-    // Optional description
-    description: { type: String, default: "" },
-
-    // Keep category
-    category: {
+    slug: {
       type: String,
-      enum: ["hoodie", "tshirt", "pants", "accessory"],
+      required: true,
+      unique: true,
+      index: true,
+    },
+
+    name: {
+      type: String,
       required: true,
     },
 
-    // Removed collectionSlug
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
 
-    colors: [{ type: String }],
-    sizes: [VariantStockSchema],
-    images: [ProductImageSchema],
+    compareAtPrice: {
+      type: Number,
+    },
 
-    featured: { type: Boolean, default: false },
-    isNewArrival: { type: Boolean, default: true },
-    tags: [{ type: String }],
+    description: {
+      type: String,
+      default: "",
+    },
+
+
+    // Product type
+    // hoodie, tshirt, pants, accessory
+    category: {
+      type: String,
+      enum: [
+        "hoodie",
+        "tshirt",
+        "pants",
+        "accessory",
+      ],
+      required: true,
+    },
+
+
+    // Admin created category
+    // Example: oversized, summer-drop, basics
+    categorySlug: {
+      type: String,
+      required: true,
+      index: true,
+    },
+
+
+    colors: [
+      {
+        type: String,
+      },
+    ],
+
+
+    sizes: [
+      VariantStockSchema,
+    ],
+
+
+    images: [
+      ProductImageSchema,
+    ],
+
+
+    featured: {
+      type: Boolean,
+      default: false,
+    },
+
+
+    isNewArrival: {
+      type: Boolean,
+      default: true,
+    },
+
+
+    tags: [
+      {
+        type: String,
+      },
+    ],
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-ProductSchema.index({ name: "text", description: "text", tags: "text" });
+
+ProductSchema.index({
+  name: "text",
+  description: "text",
+  tags: "text",
+});
+
 
 export default models.Product || model("Product", ProductSchema);
