@@ -4,7 +4,7 @@ import { Anton, Inter, IBM_Plex_Mono } from "next/font/google";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import CustomCursor from "@/components/ui/CustomCursor";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import LayoutWrapper from "@/components/layoutWrapper";
+import LayoutWrapper from "@/components/LayoutWrapper";
 // @ts-ignore
 import "./globals.css";
 const anton = Anton({
