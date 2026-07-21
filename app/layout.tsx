@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Anton, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import CartDrawer from "@/components/cart/CartDrawer";
+
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import CustomCursor from "@/components/ui/CustomCursor";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+ import LayoutWrapper from "@/components/layoutWrapper";
 
 const anton = Anton({
   weight: "400",
@@ -37,7 +36,10 @@ export const metadata: Metadata = {
   description:
     "O.W.A — streetwear premium. Hoodies, t-shirts et accessoires en édition limitée, livraison partout en Algérie.",
   keywords: [
-    "O.W.A", "streetwear Algérie", "hoodie premium", "vêtements streetwear DZ",
+    "O.W.A",
+    "streetwear Algérie",
+    "hoodie premium",
+    "vêtements streetwear DZ",
   ],
   openGraph: {
     title: "O.W.A — Oranais With Attitude",
@@ -51,15 +53,18 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${anton.variable} ${inter.variable} ${plexMono.variable}`}>
+    <html
+      lang="fr"
+      className={`${anton.variable} ${inter.variable} ${plexMono.variable}`}
+    >
       <body className="font-body antialiased">
         <LoadingScreen />
         <GrainOverlay />
         <CustomCursor />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <CartDrawer />
+
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
       </body>
     </html>
   );
