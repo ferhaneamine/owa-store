@@ -5,15 +5,15 @@ import { isAdminAuthenticated } from "@/lib/auth";
 
 export async function GET(req: NextRequest) {
   await connectDB();
+
   const params = req.nextUrl.searchParams;
   const category = params.get("category");
-  const collectionSlug = params.get("collection");
   const q = params.get("q");
   const sort = params.get("sort") ?? "newest";
 
   const filter: Record<string, unknown> = {};
+
   if (category) filter.category = category;
-  if (collectionSlug) filter.collectionSlug = collectionSlug;
   if (q) filter.$text = { $search: q };
 
   const sortMap: Record<string, Record<string, 1 | -1>> = {
@@ -22,27 +22,50 @@ export async function GET(req: NextRequest) {
     price_desc: { price: -1 },
   };
 
-  const products = await Product.find(filter).sort(sortMap[sort] ?? sortMap.newest);
+  const products = await Product.find(filter).sort(
+    sortMap[sort] ?? sortMap.newest
+  );
+
   return NextResponse.json({ products });
 }
 
 export async function POST(req: NextRequest) {
   if (!(await isAdminAuthenticated())) {
-    return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Non autorisé" },
+      { status: 401 }
+    );
   }
+
   await connectDB();
+
   const body = await req.json();
+
   try {
     const product = await Product.create(body);
-    return NextResponse.json({ product }, { status: 201 });
+
+    return NextResponse.json(
+      { product },
+      { status: 201 }
+    );
   } catch (err: unknown) {
-    if (err && typeof err === "object" && "code" in err && err.code === 11000) {
+    if (
+      err &&
+      typeof err === "object" &&
+      "code" in err &&
+      err.code === 11000
+    ) {
       return NextResponse.json(
         { error: "Un produit avec ce slug existe déjà" },
         { status: 409 }
       );
     }
+
     console.error("Product creation failed", err);
-    return NextResponse.json({ error: "Erreur lors de la création" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Erreur lors de la création" },
+      { status: 500 }
+    );
   }
 }

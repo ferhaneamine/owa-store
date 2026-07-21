@@ -23,16 +23,23 @@ const ProductSchema = new Schema(
     name: { type: String, required: true },
     price: { type: Number, required: true, min: 0 },
     compareAtPrice: { type: Number },
-    description: { type: String, required: true },
+
+    // Optional description
+    description: { type: String, default: "" },
+
+    // Keep category
     category: {
       type: String,
       enum: ["hoodie", "tshirt", "pants", "accessory"],
       required: true,
     },
-    collectionSlug: { type: String, required: true, index: true },
+
+    // Removed collectionSlug
+
     colors: [{ type: String }],
     sizes: [VariantStockSchema],
     images: [ProductImageSchema],
+
     featured: { type: Boolean, default: false },
     isNewArrival: { type: Boolean, default: true },
     tags: [{ type: String }],
