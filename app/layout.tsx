@@ -5,6 +5,7 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 import CustomCursor from "@/components/ui/CustomCursor";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import LayoutWrapper from "@/components/layoutWrapper";
+// @ts-ignore
 import "./globals.css";
 const anton = Anton({
   weight: "400",
