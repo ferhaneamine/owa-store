@@ -85,12 +85,11 @@ export default function Hero() {
             </Link>
 
             <Link
-              href="/boutique"
-              className="border border-zinc-700 px-8 py-4 font-mono text-xs uppercase tracking-[0.25em] transition hover:border-red-500 hover:text-red-500"
-            >
-              Explorer
-            </Link>
-
+  href="/boutique"
+  className="border border-zinc-700 px-8 py-4 font-mono text-xs uppercase tracking-[0.25em] text-white transition hover:border-red-500 hover:text-red-500"
+>
+  Explorer
+</Link>
           </motion.div>
 
         </div>
