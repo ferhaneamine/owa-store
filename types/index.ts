@@ -68,7 +68,6 @@ export interface CustomerInfo {
   lastName: string;
   phone: string;
   address: string;
-  city: string;
   commune: string;
   wilaya: Wilaya;
   postalCode?: string;

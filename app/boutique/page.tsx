@@ -2,7 +2,7 @@ import BoutiqueClient from "@/components/shop/BoutiqueClient";
 import { getProducts } from "@/lib/data";
 
 export const metadata = { title: "Boutique" };
-
+export const dynamic = "force-dynamic";
 export default async function BoutiquePage({
   searchParams,
 }: {

@@ -19,7 +19,6 @@ const CustomerSchema = new Schema(
     lastName: { type: String, required: true },
     phone: { type: String, required: true },
     address: { type: String, required: true },
-    city: { type: String, required: true },
     commune: { type: String, required: true },
     wilaya: { type: String, required: true },
     postalCode: { type: String },

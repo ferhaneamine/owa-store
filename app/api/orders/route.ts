@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/db";
 import Order from "@/models/Order";
 import Product from "@/models/Product";
 import Settings from "@/models/Settings";
+import { SHIPPING_PRICES } from "@/lib/shipping";
 import { isAdminAuthenticated } from "@/lib/auth";
 
 const orderSchema = z.object({
@@ -12,7 +13,6 @@ const orderSchema = z.object({
     lastName: z.string().min(1),
     phone: z.string().min(8),
     address: z.string().min(3),
-    city: z.string().min(1),
     commune: z.string().min(1),
     wilaya: z.string().min(1),
     postalCode: z.string().optional(),
@@ -42,13 +42,28 @@ function generateOrderNumber() {
 // Reads the admin-configured shipping prices — falls back to sane defaults
 // if the settings document hasn't been created yet. Applies the free
 // shipping threshold if the order subtotal qualifies.
-async function getShippingPrice(deliveryMethod: "domicile" | "bureau", subtotal: number) {
+async function getShippingPrice(
+  wilaya: string,
+  deliveryMethod: "domicile" | "bureau",
+  subtotal: number
+) {
   const settings = await Settings.findOne({ key: "site" });
-  const domicile = settings?.shippingDomicile ?? 600;
-  const bureau = settings?.shippingBureau ?? 400;
+
   const threshold = settings?.freeShippingThreshold ?? 0;
-  if (threshold > 0 && subtotal >= threshold) return 0;
-  return deliveryMethod === "domicile" ? domicile : bureau;
+
+  if (threshold > 0 && subtotal >= threshold) {
+    return 0;
+  }
+
+  const shipping =
+    SHIPPING_PRICES[wilaya] ?? {
+      domicile: 600,
+      bureau: 400,
+    };
+
+  return deliveryMethod === "domicile"
+    ? shipping.domicile
+    : shipping.bureau;
 }
 
 export async function POST(req: NextRequest) {
@@ -85,7 +100,11 @@ export async function POST(req: NextRequest) {
     }
 
     const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0);
-    const shippingEstimate = await getShippingPrice(deliveryMethod, subtotal);
+    const shippingEstimate = await getShippingPrice(
+  customer.wilaya,
+  deliveryMethod,
+  subtotal
+);
     const total = subtotal + shippingEstimate;
 
     const order = await Order.create({

@@ -6,6 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 import { useCart } from "@/lib/store/cart";
 import { useSiteSettings } from "@/lib/hooks/useSiteSettings";
 import { formatDZD, cn } from "@/lib/utils";
+import { SHIPPING_PRICES } from "@/lib/shipping";
 import { DeliveryMethod } from "@/types";
 import ProductImage from "@/components/ui/ProductImage";
 import { ALGERIA_WILAYAS, ALGERIA_COMMUNES } from "@/lib/algeria";
@@ -54,19 +55,21 @@ setForm(f=>({
   }));
 };
 
-  const rawShipping =
-    deliveryMethod==="domicile"
-    ? settings.shippingDomicile
-    : settings.shippingBureau;
+ const shipping =
+  SHIPPING_PRICES[form.wilaya] ?? {
+    domicile: 600,
+    bureau: 400,
+  };
 
+const freeShipping =
+  settings.freeShippingThreshold > 0 &&
+  subtotal() >= settings.freeShippingThreshold;
 
-  const freeShipping =
-    settings.freeShippingThreshold>0 &&
-    subtotal()>=settings.freeShippingThreshold;
-
-
-  const shippingEstimate =
-    freeShipping ? 0 : rawShipping;
+const shippingEstimate = freeShipping
+  ? 0
+  : deliveryMethod === "domicile"
+    ? shipping.domicile
+    : shipping.bureau;
 
 
 
@@ -361,12 +364,12 @@ setForm(f=>({
                   {
                     value:"domicile",
                     label:"Livraison à domicile",
-                    price:freeShipping ? 0 : settings.shippingDomicile
+                    price: freeShipping ? 0 : shipping.domicile
                   },
                   {
                     value:"bureau",
                     label:"Retrait au bureau",
-                    price:freeShipping ? 0 : settings.shippingBureau
+                    price: freeShipping ? 0 : shipping.bureau
                   }
 
                 ].map((opt)=>(
