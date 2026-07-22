@@ -77,7 +77,7 @@ export default function RootLayout({
       lang="fr"
       className={`${anton.variable} ${bebas.variable} ${inter.variable} ${plexMono.variable}`}
     >
-      <body className="font-body bg-[#090909] text-white antialiased">
+      <body className="font-body antialiased">
         <LoadingScreen />
         <GrainOverlay />
         <CustomCursor />
