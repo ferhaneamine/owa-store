@@ -11,10 +11,14 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <LatestDrop products={products} />
-      <ShopByCategory />
-      <BestSellers products={products} />
-      <Newsletter />
+
+      {/* <LatestDrop products={products} /> */}
+
+      {/* <ShopByCategory /> */}
+
+      {/* <BestSellers products={products} /> */}
+
+      {/* <Newsletter /> */}
     </>
   );
 }
