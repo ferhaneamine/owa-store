@@ -12,7 +12,7 @@ import {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#090909]">
+    <section className="relative overflow-hidden bg-[#090909] text-white">
 
       {/* Glow */}
       <div className="absolute right-[-250px] top-[-150px] h-[700px] w-[700px] rounded-full bg-red-600/20 blur-[180px]" />
@@ -74,32 +74,33 @@ export default function Hero() {
             transition={{ delay: .5 }}
             className="mt-10 flex flex-wrap gap-5"
           >
+
             <Link
               href="/boutique"
               className="flex items-center gap-2 bg-red-600 px-8 py-4 font-mono text-xs uppercase tracking-[0.25em] text-white transition hover:bg-white hover:text-black"
             >
               Voir la boutique
-
               <ArrowRight size={15} />
-
             </Link>
 
             <Link
-  href="/boutique"
-  className="border border-zinc-700 px-8 py-4 font-mono text-xs uppercase tracking-[0.25em] text-white transition hover:border-red-500 hover:text-red-500"
->
-  Explorer
-</Link>
+              href="/boutique"
+              className="border border-zinc-700 px-8 py-4 font-mono text-xs uppercase tracking-[0.25em] text-white transition hover:border-red-500 hover:text-red-500"
+            >
+              Explorer
+            </Link>
+
           </motion.div>
 
         </div>
 
+
         {/* CAR */}
 
         <motion.div
-          initial={{ opacity:0,x:100 }}
-          animate={{ opacity:1,x:0 }}
-          transition={{ duration:1 }}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
           className="absolute bottom-0 right-[-6%] h-[92%] w-[65%]"
         >
 
@@ -115,6 +116,7 @@ export default function Hero() {
 
       </div>
 
+
       {/* Bottom info */}
 
       <div className="relative border-t border-white/10 bg-black/70 backdrop-blur">
@@ -126,7 +128,6 @@ export default function Hero() {
             <Crown className="text-red-500" />
 
             <div>
-
               <p className="font-mono text-xs uppercase tracking-[0.25em]">
                 Premium Quality
               </p>
@@ -134,17 +135,16 @@ export default function Hero() {
               <p className="text-sm text-zinc-400">
                 Matières sélectionnées
               </p>
-
             </div>
 
           </div>
+
 
           <div className="flex items-center gap-4">
 
             <Truck className="text-red-500" />
 
             <div>
-
               <p className="font-mono text-xs uppercase tracking-[0.25em]">
                 Livraison
               </p>
@@ -152,17 +152,16 @@ export default function Hero() {
               <p className="text-sm text-zinc-400">
                 Partout en Algérie
               </p>
-
             </div>
 
           </div>
+
 
           <div className="flex items-center gap-4">
 
             <ShieldCheck className="text-red-500" />
 
             <div>
-
               <p className="font-mono text-xs uppercase tracking-[0.25em]">
                 Paiement
               </p>
@@ -170,7 +169,6 @@ export default function Hero() {
               <p className="text-sm text-zinc-400">
                 À la livraison
               </p>
-
             </div>
 
           </div>
