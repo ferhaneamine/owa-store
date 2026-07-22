@@ -20,9 +20,11 @@ export default function AdminCustomersPage() {
         {
           name: `${o.customer.firstName} ${o.customer.lastName}`,
           phone: o.customer.phone,
-          city: o.customer.city,
+          commune: o.customer.commune,
           wilaya: o.customer.wilaya,
-          orders: orders.filter((x) => x.customer.phone === o.customer.phone).length,
+          orders: orders.filter(
+            (x) => x.customer.phone === o.customer.phone
+          ).length,
         },
       ])
     ).values()
@@ -31,6 +33,7 @@ export default function AdminCustomersPage() {
   return (
     <div>
       <h1 className="font-display text-3xl uppercase">Clients</h1>
+
       <p className="mt-1 font-mono text-[11px] uppercase tracking-widest2 text-ash">
         Construit à partir des commandes reçues
       </p>
@@ -47,17 +50,21 @@ export default function AdminCustomersPage() {
               <tr className="border-b hairline font-mono text-[11px] uppercase tracking-widest2 text-ash">
                 <th className="p-4">Nom</th>
                 <th className="p-4">Téléphone</th>
-                <th className="p-4">Ville</th>
+                <th className="p-4">Commune</th>
                 <th className="p-4">Wilaya</th>
                 <th className="p-4">Commandes</th>
               </tr>
             </thead>
+
             <tbody>
               {customers.map((c) => (
-                <tr key={c.phone} className="border-b hairline last:border-none">
+                <tr
+                  key={c.phone}
+                  className="border-b hairline last:border-none"
+                >
                   <td className="p-4">{c.name}</td>
                   <td className="p-4">{c.phone}</td>
-                  <td className="p-4">{c.city}</td>
+                  <td className="p-4">{c.commune}</td>
                   <td className="p-4">{c.wilaya}</td>
                   <td className="p-4">{c.orders}</td>
                 </tr>

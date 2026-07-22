@@ -129,7 +129,7 @@ export default function AdminOrdersPage() {
                     <td className="p-4">
                       {o.customer.firstName} {o.customer.lastName}
                       <p className="mt-1 text-xs text-ash">
-                        {o.customer.city}, {o.customer.wilaya}
+                        {o.customer.commune}, {o.customer.wilaya}
                       </p>
                     </td>
                     <td className="p-4">{o.customer.phone}</td>
